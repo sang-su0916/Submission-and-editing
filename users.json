@@ -1,0 +1,12 @@
+{
+    "teacher1": {
+        "password": "teacher1",
+        "type": "선생님",
+        "name": "김선생"
+    },
+    "student1": {
+        "password": "student1",
+        "type": "학생",
+        "name": "이학생"
+    }
+}

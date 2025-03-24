@@ -389,4 +389,77 @@ def app():
                     # 선택한 제출 답안 상세 보기
                     selected_submission_id = st.selectbox(
                         "상세 보기할 답안 선택",
-                        [s['id'] for<response clipped><NOTE>To save on context only part of this file has been shown to you. You should retry this tool after you have searched inside the file with `grep -n` in order to find the line numbers of what you are looking for.</NOTE>
+                        [s['id'] for s in feedback_completed],
+                        format_func=lambda x: f"{next((s['problem_title'] for s in feedback_completed if s['id'] == x), '')} ({next((s['submitted_at'] for s in feedback_completed if s['id'] == x), '')})"
+                    )
+                    
+                    if selected_submission_id:
+                        selected_submission = feedback_model.get_submission_by_id(selected_submission_id)
+                        
+                        if selected_submission:
+                            st.write(f"**문제 제목:** {selected_submission['problem_title']}")
+                            st.write(f"**제출 시간:** {selected_submission['submitted_at']}")
+                            st.write(f"**점수:** {selected_submission.get('score', 'N/A')}")
+                            
+                            # 문제 내용 표시
+                            problem_id = selected_submission['problem_id']
+                            problem_data = problem_model.get_problem_by_id(problem_id)
+                            
+                            if problem_data:
+                                st.subheader("문제 내용")
+                                st.write(problem_data['content'])
+                            
+                            # 학생 답안 표시
+                            st.subheader("내 답안")
+                            st.write(selected_submission['answer'])
+                            
+                            # 첨삭 내용 표시
+                            st.subheader("첨삭 내용")
+                            st.write(selected_submission['feedback'])
+                
+                # 첨삭 대기 중인 답안 목록
+                if feedback_pending:
+                    st.subheader("첨삭 대기 중인 답안")
+                    
+                    # 제출 목록 표시
+                    pending_df = pd.DataFrame([
+                        {
+                            '문제 제목': s['problem_title'],
+                            '제출 시간': s['submitted_at']
+                        } for s in feedback_pending
+                    ])
+                    
+                    st.dataframe(pending_df)
+                    
+                    # 선택한 제출 답안 상세 보기
+                    selected_pending_id = st.selectbox(
+                        "상세 보기할 답안 선택",
+                        [s['id'] for s in feedback_pending],
+                        format_func=lambda x: f"{next((s['problem_title'] for s in feedback_pending if s['id'] == x), '')} ({next((s['submitted_at'] for s in feedback_pending if s['id'] == x), '')})"
+                    )
+                    
+                    if selected_pending_id:
+                        selected_pending = feedback_model.get_submission_by_id(selected_pending_id)
+                        
+                        if selected_pending:
+                            st.write(f"**문제 제목:** {selected_pending['problem_title']}")
+                            st.write(f"**제출 시간:** {selected_pending['submitted_at']}")
+                            
+                            # 문제 내용 표시
+                            problem_id = selected_pending['problem_id']
+                            problem_data = problem_model.get_problem_by_id(problem_id)
+                            
+                            if problem_data:
+                                st.subheader("문제 내용")
+                                st.write(problem_data['content'])
+                            
+                            # 학생 답안 표시
+                            st.subheader("내 답안")
+                            st.write(selected_pending['answer'])
+                            
+                            st.info("첨삭 대기 중입니다.")
+            else:
+                st.info("제출한 답안이 없습니다.")
+
+if __name__ == "__main__":
+    app()

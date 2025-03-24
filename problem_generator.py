@@ -446,4 +446,329 @@ d) went''',
                     'answer': 'a) go'
                 },
                 '중급': {
-                    'tit<response clipped><NOTE>To save on context only part of this file has been shown to you. You should retry this tool after you have searched inside the file with `grep -n` in order to find the line numbers of what you are looking for.</NOTE>
+                    'title': '중급 영어 어휘 문제',
+                    'content': '''다음 빈칸에 들어갈 가장 적절한 단어를 고르시오.
+
+The company has been ________ its products to international markets for over a decade.
+a) exporting
+b) exported
+c) exports
+d) export''',
+                    'answer': 'a) exporting'
+                },
+                '고급': {
+                    'title': '고급 영어 어휘 문제',
+                    'content': '''다음 빈칸에 들어갈 가장 적절한 단어를 고르시오.
+
+The professor's ________ lecture on quantum physics left many students bewildered by its complexity.
+a) abstruse
+b) lucid
+c) rudimentary
+d) transparent''',
+                    'answer': 'a) abstruse'
+                }
+            },
+            '문법': {
+                '초급': {
+                    'title': '기초 영어 문법 문제',
+                    'content': '''다음 문장의 괄호 안에 들어갈 가장 적절한 표현을 고르시오.
+
+She (______) television when I called her yesterday.
+a) watched
+b) was watching
+c) has watched
+d) watches''',
+                    'answer': 'b) was watching'
+                },
+                '중급': {
+                    'title': '중급 영어 문법 문제',
+                    'content': '''다음 문장의 괄호 안에 들어갈 가장 적절한 표현을 고르시오.
+
+If I ________ the lottery, I would buy a new house.
+a) win
+b) won
+c) had won
+d) would win''',
+                    'answer': 'b) won'
+                },
+                '고급': {
+                    'title': '고급 영어 문법 문제',
+                    'content': '''다음 문장의 괄호 안에 들어갈 가장 적절한 표현을 고르시오.
+
+Not only ________ the exam, but she also received the highest score in the class.
+a) she passed
+b) did she pass
+c) she did pass
+d) passed she''',
+                    'answer': 'b) did she pass'
+                }
+            },
+            '독해': {
+                '초급': {
+                    'title': '기초 영어 독해 문제',
+                    'content': '''다음 글을 읽고 물음에 답하시오.
+
+Tom likes to play sports. He plays soccer on Mondays and Wednesdays. He plays basketball on Tuesdays and Thursdays. On Fridays, he goes swimming. On weekends, he rests at home.
+
+질문: What sport does Tom play on Tuesday?
+a) Soccer
+b) Basketball
+c) Swimming
+d) He doesn't play sports on Tuesday''',
+                    'answer': 'b) Basketball'
+                },
+                '중급': {
+                    'title': '중급 영어 독해 문제',
+                    'content': '''다음 글을 읽고 물음에 답하시오.
+
+Coffee is one of the world's most popular beverages. It is grown in many countries, including Brazil, Colombia, and Ethiopia. Coffee beans are actually seeds from the coffee plant. These seeds are roasted to varying degrees to create different flavors. The two main types of coffee beans are Arabica and Robusta. Arabica beans are known for their smooth, complex flavor, while Robusta beans have a stronger, more bitter taste.
+
+이 글의 주제로 가장 적절한 것은?
+a) 커피의 역사와 발전
+b) 커피의 종류와 특성
+c) 커피 재배 국가의 경제
+d) 커피 소비의 건강상 영향''',
+                    'answer': 'b) 커피의 종류와 특성'
+                },
+                '고급': {
+                    'title': '고급 영어 독해 문제',
+                    'content': '''다음 글을 읽고 물음에 답하시오.
+
+The concept of emotional intelligence, popularized by psychologist Daniel Goleman, encompasses the ability to recognize, understand, and manage our own emotions, as well as recognize, understand, and influence the emotions of others. Unlike IQ, which remains relatively stable throughout life, emotional intelligence can be developed and improved with practice and attention. Research suggests that emotional intelligence may be a better predictor of success in many areas of life than traditional measures of intelligence. In the workplace, individuals with high emotional intelligence often excel in leadership positions, as they can effectively navigate complex social dynamics and inspire others.
+
+글의 요지로 가장 적절한 것은?
+a) 감성지능은 전통적인 지능 측정보다 성공을 더 잘 예측할 수 있다.
+b) 감성지능은 IQ와 달리 개발하고 향상시킬 수 있다.
+c) 감성지능이 높은 사람들은 리더십 위치에서 뛰어난 성과를 보인다.
+d) 감성지능은 자신과 타인의 감정을 인식하고 관리하는 능력이다.''',
+                    'answer': 'a) 감성지능은 전통적인 지능 측정보다 성공을 더 잘 예측할 수 있다.'
+                }
+            },
+            '작문': {
+                '초급': {
+                    'title': '기초 영어 작문 문제',
+                    'content': '''다음 주제에 대해 5문장 이상의 영어 문단을 작성하시오.
+
+Topic: My favorite hobby''',
+                    'answer': '''Sample answer:
+My favorite hobby is reading books. I enjoy reading various genres, including fiction, non-fiction, and poetry. Reading helps me learn new things and improves my vocabulary. I try to read at least one book every week. This hobby has been a great way for me to relax and escape from daily stress.'''
+                },
+                '중급': {
+                    'title': '중급 영어 작문 문제',
+                    'content': '''다음 주제에 대해 100단어 내외의 영어 에세이를 작성하시오.
+
+Topic: The importance of exercise''',
+                    'answer': '''Sample answer:
+Regular exercise is crucial for maintaining both physical and mental health. Physically, it helps control weight, reduces the risk of heart disease, and strengthens muscles and bones. Mentally, exercise releases endorphins that improve mood and reduce stress. It can also enhance cognitive function and memory. Despite these benefits, many people struggle to incorporate exercise into their daily routines due to busy schedules or lack of motivation. However, even small amounts of physical activity, such as a 30-minute walk each day, can significantly improve overall health and well-being. Therefore, making exercise a priority is an essential investment in one's long-term health.'''
+                },
+                '고급': {
+                    'title': '고급 영어 작문 문제',
+                    'content': '''다음 주제에 대해 200단어 내외의 영어 에세이를 작성하시오. 서론, 본론, 결론 구조를 갖추고, 적절한 예시와 근거를 포함하시오.
+
+Topic: The impact of social media on modern communication''',
+                    'answer': '''Sample answer:
+The advent of social media has fundamentally transformed how humans communicate in the 21st century, bringing both unprecedented opportunities and significant challenges. This essay examines the multifaceted impact of social media platforms on modern communication patterns.
+
+Social media has democratized communication by removing traditional barriers to information sharing. Individuals can now broadcast their thoughts to global audiences instantly, facilitating movements like #MeToo and Arab Spring that might have struggled to gain traction in pre-digital eras. Furthermore, these platforms have created new avenues for maintaining relationships across vast distances, allowing people to preserve connections that might otherwise fade due to geographic separation.
+
+However, this communication revolution comes with substantial costs. The brevity encouraged by platforms like Twitter has led to a simplification of complex issues, while algorithm-driven content curation creates echo chambers that reinforce existing beliefs rather than challenging them. Moreover, the replacement of face-to-face interaction with digital communication has been linked to declining empathy and social skills, particularly among younger generations who have grown up immersed in social media environments.
+
+In conclusion, while social media has expanded our ability to connect across boundaries, it has simultaneously altered the quality and depth of those connections. As these platforms continue to evolve, society must critically evaluate their impact and develop strategies to maximize their benefits while mitigating their detrimental effects on meaningful human communication.'''
+                }
+            },
+            '듣기': {
+                '초급': {
+                    'title': '기초 영어 듣기 문제',
+                    'content': '''다음 대화를 듣고 질문에 답하시오. (실제 앱에서는 오디오 파일이 제공됩니다)
+
+Woman: Excuse me, what time does the movie start?
+Man: It starts at 7:30 PM.
+Woman: And how long is it?
+Man: It's about two hours.
+Woman: Thank you.
+
+질문: 영화는 몇 시에 시작하나요?
+a) 6:30 PM
+b) 7:00 PM
+c) 7:30 PM
+d) 8:00 PM''',
+                    'answer': 'c) 7:30 PM'
+                },
+                '중급': {
+                    'title': '중급 영어 듣기 문제',
+                    'content': '''다음 대화를 듣고 질문에 답하시오. (실제 앱에서는 오디오 파일이 제공됩니다)
+
+Woman: I'm thinking about taking a vacation next month. Do you have any suggestions?
+Man: Well, it depends on what you're looking for. If you want beaches and warm weather, I'd recommend Hawaii or Florida.
+Woman: I was actually hoping for something more cultural, like museums and historical sites.
+Man: In that case, you might enjoy visiting Rome or Paris. They both have amazing architecture and world-class museums.
+Woman: Paris sounds perfect! I've always wanted to see the Louvre.
+Man: Great choice! The best time to visit is during the spring or fall when there are fewer tourists.
+
+여자가 휴가지로 선택한 곳은 어디인가요?
+a) 하와이
+b) 플로리다
+c) 로마
+d) 파리''',
+                    'answer': 'd) 파리'
+                },
+                '고급': {
+                    'title': '고급 영어 듣기 문제',
+                    'content': '''다음 강연을 듣고 질문에 답하시오. (실제 앱에서는 오디오 파일이 제공됩니다)
+
+"Today I'd like to discuss the concept of 'planned obsolescence' in modern manufacturing. Planned obsolescence is a business strategy in which the obsolescence of a product is planned and built into it from its conception. This is done so that in the future the consumer feels a need to purchase new products and services that the manufacturer brings out as replacements for the old ones. There are several types of planned obsolescence, including technical obsolescence, where products are designed to break down or become less useful over time, and style obsolescence, where products go out of fashion or appear less desirable. Critics argue that planned obsolescence is wasteful and environmentally harmful, as it leads to more products being discarded. Defenders, however, claim that it drives innovation and economic growth by encouraging the development of new and improved products."
+
+강연의 주제로 가장 적절한 것은?
+a) 현대 제조업의 환경적 영향
+b) 계획된 노후화의 개념과 그 영향
+c) 소비자 행동 패턴의 변화
+d) 지속 가능한 제조 관행의 중요성''',
+                    'answer': 'b) 계획된 노후화의 개념과 그 영향'
+                }
+            }
+        }
+        
+        # 요청된 문제 유형과 난이도에 대한 템플릿 반환
+        if problem_type in templates and difficulty in templates[problem_type]:
+            template = templates[problem_type][difficulty].copy()
+            template['subject'] = '영어'
+            template['problem_type'] = problem_type
+            template['difficulty'] = difficulty
+            template['created_by'] = '시스템'
+            return template
+        
+        # 기본 템플릿 반환
+        return self._get_default_template('영어', problem_type, difficulty)
+    
+    def _get_math_template(self, problem_type, difficulty):
+        """수학 과목 템플릿"""
+        templates = {
+            '대수': {
+                '초급': {
+                    'title': '기초 대수 문제',
+                    'content': '''다음 방정식을 풀어 x의 값을 구하시오.
+
+2x + 5 = 15''',
+                    'answer': 'x = 5'
+                },
+                '중급': {
+                    'title': '중급 대수 문제',
+                    'content': '''다음 연립방정식을 풀어 x와 y의 값을 구하시오.
+
+3x + 2y = 13
+x - y = 1''',
+                    'answer': 'x = 3, y = 2'
+                },
+                '고급': {
+                    'title': '고급 대수 문제',
+                    'content': '''다음 이차방정식의 근을 구하시오.
+
+2x² - 5x - 3 = 0''',
+                    'answer': 'x = 3 또는 x = -1/2'
+                }
+            },
+            '기하': {
+                '초급': {
+                    'title': '기초 기하 문제',
+                    'content': '''가로 길이가 8cm, 세로 길이가 5cm인 직사각형의 넓이와 둘레를 구하시오.''',
+                    'answer': '넓이: 40cm², 둘레: 26cm'
+                },
+                '중급': {
+                    'title': '중급 기하 문제',
+                    'content': '''반지름이 6cm인 원에 내접하는 정사각형의 한 변의 길이를 구하시오.''',
+                    'answer': '한 변의 길이: 6√2 cm ≈ 8.49cm'
+                },
+                '고급': {
+                    'title': '고급 기하 문제',
+                    'content': '''삼각형 ABC에서 각 A = 30°, 각 B = 45°, 변 AB = 10cm일 때, 변 BC의 길이를 구하시오.''',
+                    'answer': 'BC = 10 × sin(30°) / sin(105°) ≈ 5.35cm'
+                }
+            },
+            '미적분': {
+                '초급': {
+                    'title': '기초 미적분 문제',
+                    'content': '''다음 함수를 미분하시오.
+
+f(x) = 3x² + 2x - 5''',
+                    'answer': 'f\'(x) = 6x + 2'
+                },
+                '중급': {
+                    'title': '중급 미적분 문제',
+                    'content': '''다음 함수를 적분하시오.
+
+∫(2x³ + 3x² - 4x + 1)dx''',
+                    'answer': '(1/2)x⁴ + x³ - 2x² + x + C (C는 적분상수)'
+                },
+                '고급': {
+                    'title': '고급 미적분 문제',
+                    'content': '''다음 정적분의 값을 구하시오.
+
+∫₀^π sin²(x)dx''',
+                    'answer': 'π/2'
+                }
+            },
+            '확률과 통계': {
+                '초급': {
+                    'title': '기초 확률 문제',
+                    'content': '''주사위를 한 번 던질 때, 짝수가 나올 확률을 구하시오.''',
+                    'answer': '3/6 = 1/2 = 0.5'
+                },
+                '중급': {
+                    'title': '중급 확률 문제',
+                    'content': '''주머니에 빨간 공 3개, 파란 공 2개, 노란 공 1개가 들어있다. 이 주머니에서 무작위로 2개의 공을 동시에 꺼낼 때, 두 공의 색이 다를 확률을 구하시오.''',
+                    'answer': '4/5 = 0.8'
+                },
+                '고급': {
+                    'title': '고급 통계 문제',
+                    'content': '''다음 데이터의 평균, 중앙값, 표준편차를 구하시오.
+
+7, 12, 8, 15, 9, 11, 10''',
+                    'answer': '평균: 10.29, 중앙값: 10, 표준편차: 약 2.69'
+                }
+            },
+            '수열': {
+                '초급': {
+                    'title': '기초 수열 문제',
+                    'content': '''다음 수열의 첫 5개 항을 구하시오.
+
+a_n = 2n + 1''',
+                    'answer': '3, 5, 7, 9, 11'
+                },
+                '중급': {
+                    'title': '중급 수열 문제',
+                    'content': '''다음 수열의 일반항을 구하시오.
+
+2, 6, 12, 20, 30, ...''',
+                    'answer': 'a_n = n(n+1)'
+                },
+                '고급': {
+                    'title': '고급 수열 문제',
+                    'content': '''피보나치 수열에서 20번째 항을 구하시오. (피보나치 수열은 F₁ = 1, F₂ = 1이고, n ≥ 3일 때 F_n = F_{n-1} + F_{n-2}로 정의됩니다.)''',
+                    'answer': 'F₂₀ = 6765'
+                }
+            }
+        }
+        
+        # 요청된 문제 유형과 난이도에 대한 템플릿 반환
+        if problem_type in templates and difficulty in templates[problem_type]:
+            template = templates[problem_type][difficulty].copy()
+            template['subject'] = '수학'
+            template['problem_type'] = problem_type
+            template['difficulty'] = difficulty
+            template['created_by'] = '시스템'
+            return template
+        
+        # 기본 템플릿 반환
+        return self._get_default_template('수학', problem_type, difficulty)
+    
+    def _get_default_template(self, subject, problem_type, difficulty):
+        """기본 템플릿"""
+        return {
+            'subject': subject,
+            'problem_type': problem_type,
+            'difficulty': difficulty,
+            'title': f'{subject} {problem_type} {difficulty} 문제',
+            'content': f'이것은 {subject} 과목의 {problem_type} 유형 {difficulty} 난이도 문제 템플릿입니다. 실제 문제 내용을 입력해주세요.',
+            'answer': '정답을 입력해주세요.',
+            'created_by': '시스템'
+        }
