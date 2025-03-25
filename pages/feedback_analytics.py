@@ -1,12 +1,10 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
+from datetime import datetime, timedelta
 import os
 import sys
 import json
-from datetime import datetime, timedelta
-import numpy as np
 
 # 상위 디렉토리를 시스템 경로에 추가하여 모듈 import가 가능하도록 함
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -139,6 +137,14 @@ def app():
     
     st.title("첨삭 결과 분석")
     
+    # 로그인 확인
+    is_logged_in = st.session_state.get('is_logged_in', False)
+    
+    if not is_logged_in:
+        st.error("이 페이지에 접근하려면 로그인이 필요합니다.")
+        st.info("로그인 페이지로 이동하여 로그인해주세요.")
+        return
+    
     # 데이터 디렉토리 경로
     data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
     
@@ -178,17 +184,7 @@ def app():
                 date_df = date_df.sort_values('date')
                 
                 # 그래프 생성
-                fig, ax = plt.subplots(figsize=(10, 5))
-                ax.bar(date_df['date'], date_df['count'], color='skyblue')
-                ax.set_xlabel('날짜')
-                ax.set_ylabel('제출 수')
-                ax.grid(axis='y', linestyle='--', alpha=0.7)
-                
-                # x축 날짜 포맷 설정
-                plt.xticks(rotation=45)
-                plt.tight_layout()
-                
-                st.pyplot(fig)
+                st.line_chart(date_df.set_index('date'))
             else:
                 st.info("제출 데이터가 없습니다.")
             
@@ -200,15 +196,7 @@ def app():
                 score_df = pd.DataFrame(analytics_data['score_distribution'])
                 
                 # 그래프 생성
-                fig, ax = plt.subplots(figsize=(10, 5))
-                ax.bar(score_df['range'], score_df['count'], color='lightgreen')
-                ax.set_xlabel('점수 범위')
-                ax.set_ylabel('학생 수')
-                ax.grid(axis='y', linestyle='--', alpha=0.7)
-                
-                plt.tight_layout()
-                
-                st.pyplot(fig)
+                st.bar_chart(score_df.set_index('range'))
             else:
                 st.info("점수 데이터가 없습니다.")
         else:
@@ -247,29 +235,7 @@ def app():
                 scores_df = scores_df.sort_values('date')
                 
                 # 그래프 생성
-                fig, ax = plt.subplots(figsize=(10, 5))
-                ax.plot(scores_df['date'], scores_df['score'], marker='o', linestyle='-', color='blue')
-                
-                # 문제 제목 툴팁 추가
-                for i, row in scores_df.iterrows():
-                    ax.annotate(row['problem_title'],
-                                (row['date'], row['score']),
-                                textcoords="offset points",
-                                xytext=(0, 10),
-                                ha='center',
-                                fontsize=8,
-                                alpha=0.7)
-                
-                ax.set_xlabel('날짜')
-                ax.set_ylabel('점수')
-                ax.set_ylim(0, 100)
-                ax.grid(True, linestyle='--', alpha=0.7)
-                
-                # x축 날짜 포맷 설정
-                plt.xticks(rotation=45)
-                plt.tight_layout()
-                
-                st.pyplot(fig)
+                st.line_chart(scores_df.set_index('date'))
             else:
                 st.info("아직 첨삭 완료된 답안이 없습니다.")
             

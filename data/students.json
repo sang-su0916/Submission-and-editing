@@ -1,0 +1,14 @@
+[
+  {
+    "student_number": "01",
+    "name": "일이삼",
+    "grade": "중학교 1학년",
+    "class_name": "1",
+    "phone": "010-123-1234",
+    "email": "abcd123@gmail.com",
+    "address": "서울시 강남구 제주동123번지",
+    "id": "6fc78325-b2f6-466c-8311-53acfce6e985",
+    "created_at": "2025-03-25 14:15:35",
+    "updated_at": "2025-03-25 14:16:48"
+  }
+]

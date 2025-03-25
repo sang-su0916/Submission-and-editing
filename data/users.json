@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "username": "admin",
+    "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "role": "admin",
+    "name": "관리자",
+    "email": "admin@example.com",
+    "created_at": "2025-03-24 18:13:27"
+  },
+  {
+    "id": "2",
+    "username": "teacher",
+    "password": "cde383eee8ee7a4400adf7a15f716f179a2eb97646b37e089eb8d6d04e663416",
+    "role": "teacher",
+    "name": "교수",
+    "email": "teacher@example.com",
+    "created_at": "2025-03-24 18:13:27"
+  },
+  {
+    "id": "3",
+    "username": "student",
+    "password": "703b0a3d6ad75b649a28adde7d83c6251da457549263bc7ff45ec709b0a8448b",
+    "role": "student",
+    "name": "학생",
+    "email": "student@example.com",
+    "created_at": "2025-03-24 18:13:27"
+  },
+  {
+    "id": "6179982f-7c71-4477-bf0f-920323905eb3",
+    "username": "student_01",
+    "password": "938db8c9f82c8cb58d3f3ef4fd250036a48d26a712753d2fde5abd03a85cabf4",
+    "role": "student",
+    "name": "일이삼",
+    "created_at": "2025-03-25 14:16:28"
+  }
+]
