@@ -1,0 +1,36 @@
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 가상환경
+.venv/
+venv/
+ENV/
+
+# 배포 및 패키지 파일
+*.egg
+*.egg-info/
+dist/
+build/
+
+# 로그 파일
+*.log
+
+# 데이터베이스 및 환경설정 파일
+*.db
+*.sqlite3
+.env
+
+# IDE 및 에디터 설정
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# Streamlit 캐시
+.streamlit/secrets.toml 

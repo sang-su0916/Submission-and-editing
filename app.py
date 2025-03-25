@@ -9,12 +9,7 @@ import pandas as pd
 import uuid
 
 # 상위 디렉토리를 시스템 경로에 추가하여 모듈 import가 가능하도록 함
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils import common
-
-# 모듈 경로 추가
-current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(current_dir)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # 유틸리티 모듈 불러오기
 from utils.common import load_css, load_env_from_config
@@ -323,7 +318,7 @@ def main():
     init_session_state()
     
     # CSS 로드
-    common.load_css()
+    load_css()
     
     # 기본 페이지 네비게이션 숨기기
     st.markdown("""

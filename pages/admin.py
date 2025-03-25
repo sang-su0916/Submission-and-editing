@@ -8,6 +8,12 @@ import uuid
 from datetime import datetime
 import time
 
+try:
+    import google.generativeai as genai
+except ImportError:
+    st.error("google-generativeai 패키지를 설치해주세요: pip install google-generativeai")
+    genai = None
+
 # 상위 디렉토리를 시스템 경로에 추가하여 모듈 import가 가능하도록 함
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.common import load_dataframe, save_dataframe
@@ -113,6 +119,19 @@ class UserModel:
         """모든 사용자 조회"""
         return self.users_data
 
+def test_api_key(api_key):
+    """API 키 테스트"""
+    if genai is None:
+        return False, "google-generativeai 패키지가 설치되어 있지 않습니다. 먼저 패키지를 설치해주세요."
+    
+    try:
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel('gemini-pro')
+        response = model.generate_content('Hello, this is a test.')
+        return True, "API 키가 정상적으로 작동합니다."
+    except Exception as e:
+        return False, f"API 키 테스트 중 오류가 발생했습니다: {str(e)}"
+
 def app():
     """관리자 페이지"""
     
@@ -212,7 +231,7 @@ def app():
                         if result:
                             st.success(f"사용자 '{username}'이(가) 추가되었습니다.")
                             time.sleep(1)
-                            st.experimental_rerun()
+                            st.rerun()
                         else:
                             st.error(f"사용자 '{username}'이(가) 이미 존재합니다.")
         else:
@@ -257,7 +276,7 @@ def app():
                             if result:
                                 st.success(f"사용자 '{selected_user}'이(가) 삭제되었습니다.")
                                 time.sleep(1)
-                                st.experimental_rerun()
+                                st.rerun()
                             else:
                                 st.error(f"사용자 '{selected_user}' 삭제 중 오류가 발생했습니다.")
                         else:
@@ -279,7 +298,7 @@ def app():
                                 if result:
                                     st.success(f"사용자 '{selected_user}' 정보가 업데이트되었습니다.")
                                     time.sleep(1)
-                                    st.experimental_rerun()
+                                    st.rerun()
                                 else:
                                     st.error(f"사용자 '{selected_user}' 정보 업데이트 중 오류가 발생했습니다.")
             else:
@@ -294,97 +313,79 @@ def app():
     with tabs[2]:
         st.subheader("API 설정")
         
-        # 데이터 디렉토리 경로
-        data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
-        config_file = os.path.join(data_dir, 'config.json')
+        # API 키 입력
+        api_key = st.text_input("Gemini API 키", type="password")
         
-        # 설정 파일 로드
-        config_data = {}
-        try:
-            if os.path.exists(config_file):
-                with open(config_file, 'r', encoding='utf-8') as f:
-                    config_data = json.load(f)
-        except Exception as e:
-            st.error(f"설정 파일을 로드하는 중 오류가 발생했습니다: {str(e)}")
-            config_data = {}
+        # 저장 옵션
+        save_option = st.selectbox(
+            "저장 옵션",
+            ["환경 변수와 config.json에 저장"],
+            format_func=lambda x: x
+        )
         
-        # Gemini API 키 설정 섹션
-        st.markdown("### Gemini API 키 설정")
+        col1, col2 = st.columns(2)
         
-        # 현재 API 키 표시
-        current_api_key = os.environ.get('GOOGLE_API_KEY', '')
-        if current_api_key:
-            st.success("Gemini API 키가 환경 변수에 설정되어 있습니다.")
-            st.text(f"현재 API 키: {current_api_key[:5]}...{current_api_key[-5:]}")
-        else:
-            st.warning("Gemini API 키가 설정되어 있지 않습니다.")
+        # API 키 저장 버튼
+        if col1.button("API 키 저장"):
+            if not api_key:
+                st.error("API 키를 입력해주세요.")
+            else:
+                try:
+                    # config.json 파일에 저장
+                    config_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.streamlit')
+                    os.makedirs(config_dir, exist_ok=True)
+                    config_file = os.path.join(config_dir, 'config.json')
+                    
+                    config_data = {}
+                    if os.path.exists(config_file):
+                        with open(config_file, 'r', encoding='utf-8') as f:
+                            config_data = json.load(f)
+                    
+                    config_data['GEMINI_API_KEY'] = api_key
+                    
+                    with open(config_file, 'w', encoding='utf-8') as f:
+                        json.dump(config_data, f, ensure_ascii=False, indent=2)
+                    
+                    st.success("API 키가 성공적으로 저장되었습니다.")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"API 키 저장 중 오류가 발생했습니다: {str(e)}")
         
-        # API 키 입력 폼
-        with st.form("api_key_form"):
-            new_api_key = st.text_input(
-                "Gemini API 키",
-                type="password",
-                value=current_api_key,
-                help="Google AI Studio에서 발급받은 API 키를 입력하세요."
-            )
-            
-            save_option = st.selectbox(
-                "저장 옵션",
-                options=["환경 변수에만 저장", "환경 변수와 config.json에 저장"],
-                index=1,
-                help="환경 변수에만 저장하면 앱 재시작 시 다시 설정해야 합니다."
-            )
-            
-            save_button = st.form_submit_button("API 키 저장")
-            
-            if save_button:
-                # 환경 변수에 저장
-                os.environ['GOOGLE_API_KEY'] = new_api_key
-                
-                # config.json에 저장
-                if save_option == "환경 변수와 config.json에 저장":
-                    try:
-                        # 디렉토리가 없으면 생성
-                        os.makedirs(data_dir, exist_ok=True)
-                        
-                        # 기존 설정에 API 키 추가
-                        config_data['GOOGLE_API_KEY'] = new_api_key
-                        
-                        # 파일에 저장
-                        with open(config_file, 'w', encoding='utf-8') as f:
-                            json.dump(config_data, f, ensure_ascii=False, indent=2)
-                        
-                        st.success("API 키가 환경 변수와 config.json 파일에 저장되었습니다.")
-                    except Exception as e:
-                        st.error(f"API 키를 저장하는 중 오류가 발생했습니다: {str(e)}")
+        # API 키 테스트 버튼
+        if col2.button("API 키 테스트"):
+            if not api_key:
+                st.error("API 키를 입력해주세요.")
+            else:
+                success, message = test_api_key(api_key)
+                if success:
+                    st.success(message)
                 else:
-                    st.success("API 키가 환경 변수에 저장되었습니다. (앱 재시작 시 다시 설정해야 합니다)")
-                
-                # 페이지 새로 고침
-                time.sleep(1)
-                st.experimental_rerun()
+                    st.error(message)
         
         # API 키 삭제 버튼
-        if current_api_key:
-            if st.button("API 키 삭제"):
-                try:
-                    # 환경 변수에서 삭제
-                    if 'GOOGLE_API_KEY' in os.environ:
-                        del os.environ['GOOGLE_API_KEY']
+        if st.button("API 키 삭제"):
+            try:
+                config_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.streamlit')
+                config_file = os.path.join(config_dir, 'config.json')
+                
+                if os.path.exists(config_file):
+                    with open(config_file, 'r', encoding='utf-8') as f:
+                        config_data = json.load(f)
                     
-                    # config.json에서 삭제
-                    if 'GOOGLE_API_KEY' in config_data:
-                        config_data.pop('GOOGLE_API_KEY')
+                    if 'GEMINI_API_KEY' in config_data:
+                        del config_data['GEMINI_API_KEY']
                         
-                        # 파일에 저장
                         with open(config_file, 'w', encoding='utf-8') as f:
                             json.dump(config_data, f, ensure_ascii=False, indent=2)
-                    
-                    st.success("API 키가 삭제되었습니다.")
-                    time.sleep(1)
-                    st.experimental_rerun()
-                except Exception as e:
-                    st.error(f"API 키를 삭제하는 중 오류가 발생했습니다: {str(e)}")
+                        
+                        st.success("API 키가 삭제되었습니다.")
+                        st.rerun()
+                    else:
+                        st.info("저장된 API 키가 없습니다.")
+                else:
+                    st.info("저장된 API 키가 없습니다.")
+            except Exception as e:
+                st.error(f"API 키를 삭제하는 중 오류가 발생했습니다: {str(e)}")
         
         # API 키 관련 정보 및 가이드
         st.markdown("""
@@ -398,28 +399,17 @@ def app():
         """)
         
         # API 키 테스트 섹션
-        if current_api_key:
+        if api_key:
             st.markdown("### API 키 테스트")
             if st.button("API 키 테스트"):
                 with st.spinner("API 연결 테스트 중..."):
                     try:
                         # API 키 테스트 로직 (간단한 요청 보내기)
-                        try:
-                            import google.generativeai as genai
-                            
-                            # Gemini API 키 설정
-                            genai.configure(api_key=current_api_key)
-                            
-                            # 모델 목록 가져오기 테스트
-                            models = genai.list_models()
-                            gemini_models = [m.name for m in models if 'gemini' in m.name]
-                            
-                            if gemini_models:
-                                st.success(f"API 키가 유효합니다! 사용 가능한 Gemini 모델: {', '.join(gemini_models)}")
-                            else:
-                                st.warning("API 키는 유효하지만 Gemini 모델을 찾을 수 없습니다.")
-                        except ImportError:
-                            st.warning("google-generativeai 패키지가 설치되어 있지 않습니다. 테스트를 위해 설치해주세요.")
+                        success, message = test_api_key(api_key)
+                        if success:
+                            st.success(message)
+                        else:
+                            st.error(message)
                     except Exception as e:
                         st.error(f"API 키 테스트 중 오류가 발생했습니다: {str(e)}")
 
